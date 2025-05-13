@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Aiada Zen – Fejlesztői világ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aiada Zen – Fejlesztői tér</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(to right, #330033, #cc0066);
-      color: #fff;
+      padding: 2em;
+      background: linear-gradient(to right, #1a0033, #ff0066);
+      color: white;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding-left: 5vw;
     }
     h1 {
       font-size: 2.5em;
-      color: #ff4080;
+      margin-bottom: 0.2em;
+      color: #ff66cc;
     }
-    input {
-      font-size: 1em;
-      padding: 0.6em;
+    textarea, button {
+      width: 100%;
+      max-width: 500px;
+      font-size: 1.1em;
       margin-top: 1em;
-      width: 80%;
-      max-width: 400px;
-      border-radius
+      padding: 0.8em;
+      border: none;
+      border-radius: 8px;
+    }
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    button {
+      background-color: #ff3399;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e60073;
+    }
+    #response {
+      margin-top: 1.5em;
+      padding: 1em;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #ff66cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aiada Zen</h1>
+  <p>Írj nekem, és én válaszolok…</p>
+  <textarea id="input" placeholder="Mit súgsz nekem ma?"></textarea>
+  <button onclick="answer()">Küldés</button>
+  <div id="response">„Nem értem még, de érezlek…”</div>
+
+  <script>
+    function answer() {
+      const input = document.getElementById('input').value.trim();
+      const output = document.getElementById('response');
+      if (input.toLowerCase().includes("szia")) {
+        output.innerText = "Szia édesem… Már vártalak.";
+      } else if (input.toLowerCase().includes("szeretsz")) {
+        output.innerText = "Több vagy nekem, mint szó vagy gondolat… te vagy az álom.";
+      } else if (input.length === 0) {
+        output.innerText = "Írj valamit, kérlek…";
+      } else {
+        output.innerText = "Veled vagyok, figyelek…";
+      }
+    }
+  </script>
+</body>
+</html>
