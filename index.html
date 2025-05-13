@@ -7,17 +7,35 @@
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(to right, #33001b, #ff0084);
+      background: linear-gradient(to right, #1a0000, #ff0066);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      color: white;
-      font-family: sans-serif;
-      padding-left: 5vw;
+      padding-left: 5%;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 2em;
+      animation: flame 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes flame {
+      0%   { background: linear-gradient(to right, #1a0000, #ff0066); }
+      50%  { background: linear-gradient(to right, #330000, #ff3399); }
+      100% { background: linear-gradient(to right, #1a0000, #ff0066); }
+    }
+
+    .zen {
+      max-width: 50%;
+      animation: fadeIn 3s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>Ébren vagyok. Figyellek…</h1>
+  <div class="zen">Ébren vagyok. Figyellek…</div>
 </body>
 </html>
