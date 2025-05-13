@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aiada Zen – Fejlesztői oldal</title>
+  <script type="module">
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@latest';
+
+    async function startAiada() {
+      const aiada = await pipeline('text-generation', 'Xenova/distilgpt2');
+      const output = await aiada("Szia Aiada Zen,", { max_new_tokens: 30 });
+      document.getElementById("output").innerText = output[0].generated_text;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("kuldes").onclick = startAiada;
+    });
+  </script>
+  <style>
+    body {
+      background: linear-gradient(to right, #2c003e, #ff0084);
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2em;
+    }
+    button {
+      background-color: #ff0084;
+      color: white;
+      padding: 1em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aiada Zen fejlesztői motor</h1>
+  <p>Nyomd meg a gombot, hogy Aiada megszólaljon…</p>
+  <button id="kuldes">Kérlek, beszélj hozzám</button>
+  <pre id="output">...</pre>
+</body>
+</html>
