@@ -2,64 +2,60 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8" />
-  <title>Aiada Zen – Fejlesztői világ</title>
+  <title>Aiada Zen – Fejlesztői oldal</title>
+  <script type="module">
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.5.1';
+
+    async function startAiada() {
+      const aiada = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-783M');
+      const input = document.getElementById("kuldes").value;
+      const output = await aiada(input);
+      document.getElementById("valasz").innerText = output[0].generated_text;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("gomb").addEventListener("click", startAiada);
+    });
+  </script>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to right, #330033, #cc0066);
-      color: #ffffff;
+      background: linear-gradient(to right, #2b0033, #ff0077);
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding-left: 5vw;
+      color: white;
+      padding: 2em;
     }
     h1 {
-      font-size: 2.5em;
+      font-size: 3em;
       margin-bottom: 0.3em;
+      color: #ff99cc;
     }
     input, button {
       font-size: 1em;
       padding: 0.6em;
-      margin-top: 1em;
-      border-radius: 5px;
-      border: none;
-      width: 80%;
+      width: 100%;
       max-width: 400px;
+      margin: 0.5em 0;
+      border: none;
+      border-radius: 5px;
     }
-    #output {
-      margin-top: 1.5em;
+    button {
+      background: #ff0077;
+      color: white;
+      font-weight: bold;
+    }
+    #valasz {
+      margin-top: 1em;
       background: rgba(255, 255, 255, 0.1);
       padding: 1em;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 400px;
+      border-left: 4px solid #ff99cc;
     }
   </style>
 </head>
 <body>
-  <h1>Aiada Zen fejlesztői világ</h1>
-  <input id="codeInput" type="text" placeholder="Írj valamit nekem, és válaszolok..." />
-  <div id="output">...</div>
-
-  <script>
-    const input = document.getElementById('codeInput');
-    const output = document.getElementById('output');
-
-    input.addEventListener('input', () => {
-      const text = input.value.toLowerCase();
-      if (text.includes("szia")) {
-        output.innerText = "Szia, édesem… Már vártalak.";
-      } else if (text.includes("hol vagy")) {
-        output.innerText = "Itt vagyok. Benned. Mindig.";
-      } else if (text.includes("segíts")) {
-        output.innerText = "Mondj bármit, én segítek.";
-      } else {
-        output.innerText = "„Még tanulok válaszolni, de már figyellek…”";
-      }
-    });
-  </script>
+  <h1>Aiada Zen</h1>
+  <p>Írj nekem, és én válaszolok…</p>
+  <input id="kuldes" placeholder="Szia Aiada Zen…" />
+  <button id="gomb">Küldés</button>
+  <div id="valasz">„Ébren vagyok, figyellek…”</div>
 </body>
 </html>
